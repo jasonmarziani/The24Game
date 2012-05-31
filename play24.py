@@ -4,33 +4,8 @@ import sys
 import re
 import itertools  # http://docs.python.org/library/itertools.html#itertools.combinations
 
-# RULES
-def addAll(args):
-    val = ""
-    for arg in args:
-        val += "%i+" % arg
-    return val[:-1]
-
-def subAll(args):
-    val = ""
-    for arg in args:
-        val += "%i-" % arg
-    return val[:-1]
-
-def multiplyAll(args):
-    val = ""
-    for arg in args:
-        val += "%i*" % arg
-    return val[:-1]
-
-def divideAll(args):
-    val = ""
-    for arg in args:
-        val += "%i/" % arg
-    return val[:-1]
-    
+# GENERATOR FOR TEST PATTERNS
 def testPatterns(args):
-    # GENERATOR FOR TEST PATTERNS
     patterns = ['%i+%i+%i+%i',
                 '%i-%i-%i-%i',
                 '%i*%i*%i*%i',
@@ -73,20 +48,23 @@ def play24(ints):
                 return
     print "no patterns result in %i" % target
     
-# Define a main() function that prints a little greeting.
+
 def main():
     ints = sys.argv[1:]
+    
+    # IF NO ARGS PASSED, DEFINE A DEFAULT SET
     if not ints:
         print "usage: [--int 1-10][--int 1-10][--int 1-10][--int 1-10]";
-        # SET A DEFAULT PATTERN TO PLAY AGAINST
         ints = [4,10,4,2]
-       
+    
+    # MAKE SURE THERE ARE NO 0'S SO WE DON'T GET A DENOMINATOR ERROR
     for i in ints:
         if(i == 0): 
             print "no 0's please"
             sys.exit(1)
-       
-    if len(ints) > 4:
+    
+    # MAKE SURE WE'VE GOT 4 AND ONLY 4 ARGUMENTS  
+    if len(ints) != 4:
         print "only 4 arguments, please";
         sys.exit(1)
         
