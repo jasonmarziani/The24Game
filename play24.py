@@ -19,7 +19,9 @@ def testPatterns(args):
                 '%i*(%i+%i)+%i',
                 '%i*(%i-%i)-%i',
                 '%i*(%i-%i)+%i',
-                '%i*(%i+%i)-%i']
+                '%i*(%i+%i)-%i',
+                '%i+(%i/%i)*%i',
+                '(%i/%i+%i)*%i']
     for pattern in patterns:
         yield pattern % (int(args[0]), int(args[1]), int(args[2]), int(args[3]))
 
