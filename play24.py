@@ -6,24 +6,24 @@ import itertools  # http://docs.python.org/library/itertools.html#itertools.comb
 
 # GENERATOR FOR TEST PATTERNS
 def testPatterns(args):
-    patterns = ['%i+%i+%i+%i',
-                '%i-%i-%i-%i',
-                '%i*%i*%i*%i',
-                '%i/%i/%i/%i',
-                '(%i+%i)*(%i+%i)',
-                '(%i-%i)*(%i-%i)',
-                '(%i+%i)*%i*%i',
-                '(%i-%i)*%i*%i',
-                '(%i-%i)*%i+%i',
-                '(%i-%i)*%i-%i',
-                '%i*(%i+%i)+%i',
-                '%i*(%i-%i)-%i',
-                '%i*(%i-%i)+%i',
-                '%i*(%i+%i)-%i',
-                '%i+(%i/%i)*%i',
-                '(%i/%i+%i)*%i']
+    patterns = ['%f+%f+%f+%f',
+                '%f-%f-%f-%f',
+                '%f*%f*%f*%f',
+                '%f/%f/%f/%f',
+                '(%f+%f)*(%f+%f)',
+                '(%f-%f)*(%f-%f)',
+                '(%f+%f)*%f*%f',
+                '(%f-%f)*%f*%f',
+                '(%f-%f)*%f+%f',
+                '(%f-%f)*%f-%f',
+                '%f*(%f+%f)+%f',
+                '%f*(%f-%f)-%f',
+                '%f*(%f-%f)+%f',
+                '%f*(%f+%f)-%f',
+                '%f+(%f/%f)*%f',
+                '(%f/%f+%f)*%f']
     for pattern in patterns:
-        yield pattern % (int(args[0]), int(args[1]), int(args[2]), int(args[3]))
+        yield pattern % (float(args[0]), float(args[1]), float(args[2]), float(args[3]))
 
 # GENERATE ALL POSSIBLE COMBINATIONS FROM ARGS PROVIDED
 # Code based on the following documetion
@@ -42,13 +42,13 @@ def play24(ints):
     print "thinking..."
 
     for combo in combinations(ints, 4):
-        print "COMBO:", combo
+        #print "COMBO:", combo
         for test in testPatterns(combo):
-            print test
+            #print test, eval(test)
             if eval(test) == target:
                 print "FOUND: ", test
                 return
-    print "no patterns result in %i" % target
+    print "no patterns result in %f" % target
     
 
 def main():
